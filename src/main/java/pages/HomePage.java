@@ -26,6 +26,11 @@ public class HomePage {
         return new HoversPage(driver);
     }
 
+    public HorizontalSliderPage clickHorizontalSlider() {
+        clickLink("Horizontal Slider");
+        return new HorizontalSliderPage(driver);
+    }
+
     public void clickLink(String linkText) {
         driver.findElement(By.linkText(linkText)).click();;
     }
