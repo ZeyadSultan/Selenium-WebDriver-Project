@@ -31,6 +31,21 @@ public class HomePage {
         return new HorizontalSliderPage(driver);
     }
 
+    public AlertPage clickJavaScriptAlerts() {
+        clickLink("JavaScript Alerts");
+        return new AlertPage(driver);
+    }
+
+    public FileUploadPage clickFileUpload() {
+        clickLink("File Upload");
+        return new FileUploadPage(driver);
+    }
+
+    public WYSIWYGEditorPage clickWYSIWYG() {
+        clickLink("WYSIWYG Editor");
+        return new WYSIWYGEditorPage(driver);
+    }
+
     public void clickLink(String linkText) {
         driver.findElement(By.linkText(linkText)).click();;
     }
