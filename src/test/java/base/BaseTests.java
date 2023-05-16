@@ -3,26 +3,27 @@ package base;
 import com.google.common.io.Files;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 import pages.HomePage;
+import utils.EventReporter;
 import utils.WindowManager;
-
+import org.openqa.selenium.support.events.EventFiringWebDriver;
 import java.io.File;
 import java.io.IOException;
 
 public class BaseTests {
-    private WebDriver driver;
+    private EventFiringWebDriver driver;
     protected HomePage homePage;
 
     @BeforeClass // will run before each of the test classes
     public void setUp() {
         System.setProperty("webdriver.chrome.driver", "resources/chromedriver");
 
-        driver = new ChromeDriver();
-        driver.get("https://the-internet.herokuapp.com/"); // getting the link we will work on
-
-        homePage = new HomePage(driver);
+        driver = new EventFiringWebDriver(new ChromeDriver());
+        driver.register(new EventReporter());
+        goHome();
 
     }
 
