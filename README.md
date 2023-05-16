@@ -3,6 +3,7 @@
 **Introduction**
 
 As a passionate Software Engineer, I am delighted to present my project, which showcases the skills I acquired during the Selenium WebDriver with Java course instructed by Angie Jones. In the course, I learned to create strong and maintainable automated tests using Java, Selenium WebDriver, and TestNG. The topics covered ranged from basic automation concepts to advanced methods like Page Object Modeling, Data-driven Testing, and Cross-browser testing.
+You can find the course here: https://testautomationu.applitools.com/selenium-webdriver-tutorial-java/
 
 **Installation**
 
