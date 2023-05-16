@@ -8,6 +8,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import pages.HomePage;
+import utils.WindowManager;
 
 public class BaseTests {
     private WebDriver driver;
@@ -22,6 +23,10 @@ public class BaseTests {
 
         homePage = new HomePage(driver);
 
+    }
+
+    public WindowManager getWindowManager() {
+        return new WindowManager(driver);
     }
 
     @AfterClass
