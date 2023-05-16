@@ -1,14 +1,15 @@
 package base;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import com.google.common.io.Files;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeTest;
+import org.testng.ITestResult;
+import org.testng.annotations.*;
 import pages.HomePage;
 import utils.WindowManager;
+
+import java.io.File;
+import java.io.IOException;
 
 public class BaseTests {
     private WebDriver driver;
@@ -25,8 +26,27 @@ public class BaseTests {
 
     }
 
+    @BeforeMethod
+    public void goHome() {
+        driver.get("https://the-internet.herokuapp.com/");
+        homePage = new HomePage(driver);
+    }
+
     public WindowManager getWindowManager() {
         return new WindowManager(driver);
+    }
+
+    @AfterMethod
+    public void recordFailure(ITestResult test) {
+        if(ITestResult.FAILURE == test.getStatus()) {
+            var camera = (TakesScreenshot)driver;
+            File screenshot = camera.getScreenshotAs(OutputType.FILE);
+            try {
+                Files.move(screenshot, new File("resources/screenshots/" + test.getName() + ".png"));
+            }catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @AfterClass
